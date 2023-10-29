@@ -1,4 +1,14 @@
-def findOrder(numCourses, prerequisites):
+def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+    def build_adjacency_list(numCourses, prerequisites):
+        # Initialize the adjacency list with empty lists for each course
+        prereq = {c: [] for c in range(numCourses)}
+
+        # Populate the adjacency list based on prerequisites
+        for course, prereq_course in prerequisites:
+            prereq[course].append(prereq_course)
+
+        return prereq
+
     def dfs(course):
         if course in cycle:
             return False
@@ -22,4 +32,4 @@ def findOrder(numCourses, prerequisites):
         if not dfs(course):
             return []
 
-    return order[::-1]  # Reverse the order to get the correct course sequence
+    return order  # Do not reverse the order
