@@ -1,21 +1,27 @@
 class Solution:
     def deleteAndEarn(self, nums):
+        if not nums:
+            return 0
+
         # Eliminate duplicates and count occurrences
         count = collections.Counter(nums)
-        values = sorted(count.keys())
+        max_num = max(count.keys())  # Determine the maximum value in the 'count' dictionary
+        
+        # Create a list to store the earned points for each value
+        dp = [0] * (max_num + 1)
 
-        # Initialize earn1 and earn2
-        earn1, earn2 = 0, 0
+        # Initialize dp[1] and dp[2]
+        dp[1] = count[1] * 1
+        if max_num > 1:
+            dp[2] = max(count[1] * 1, count[2] * 2)
 
-        for value in values:
+        for i in range(3, max_num + 1):
             # Calculate points for the current value
-            points = value * count[value]
+            points = i * count[i]
 
-            # Check if the previous value is adjacent
-            if value - 1 != values[-2]:
-                earn1, earn2 = max(earn1, earn2) + points, earn1
-            else:
-                earn1, earn2 = earn2 + points, max(earn1, earn2)
+            # Update dp[i] using the previous values in dp
+            dp[i] = max(dp[i - 2] + points, dp[i - 1])
 
         # Return the maximum points
-        return max(earn1, earn2)
+        return dp[max_num]
+
