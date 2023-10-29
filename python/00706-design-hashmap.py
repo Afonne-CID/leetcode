@@ -1,3 +1,9 @@
+class ListNode:
+    def __init__(self, key=None, val=None):
+        self.key = key
+        self.val = val
+        self.next = None
+
 class MyHashMap:
     def __init__(self):
         # Initialize the object with an empty map (implemented as an array of linked lists).
