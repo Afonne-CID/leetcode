@@ -7,7 +7,7 @@ def maxPerformance(self, n: int, speed: List[int], efficiency: List[int], k: int
         eng.append([eff, spd])
     eng.sort(reverse=True)
 
-    res, speed = 0
+    res, speed = 0, 0
     minHeap = []
 
     for eff, spd in eng:
