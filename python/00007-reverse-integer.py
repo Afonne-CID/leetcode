@@ -1,6 +1,5 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        MIN = -2**31 # Minimum 32-bit integer
         MAX = 2**31 – 1 # Maximum 32-bit integer
 
         res = 0
